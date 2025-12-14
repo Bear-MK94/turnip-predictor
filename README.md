@@ -13,7 +13,7 @@
 # ローカルでGitの初期化
 git init
 git add .
-git commit -m "Initial commit: カブ価格予想ツール"
+git commit -m "Initial commit"
 git branch -M main
 git remote add origin https://github.com/YOUR_USERNAME/turnip-predictor.git
 git push -u origin main

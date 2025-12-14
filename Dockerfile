@@ -7,16 +7,11 @@ WORKDIR /app
 # package.jsonをコピー
 COPY package.json ./
 
-# package-lock.jsonがあればコピー（なくてもOK）
-COPY package-lock.json* ./
+# package.jsonとpackage-lock.json（存在する場合）をコピー
+COPY package*.json ./
 
 # 依存関係をインストール
-# package-lock.jsonがあれば npm ci、なければ npm install
-RUN if [ -f package-lock.json ]; then \
-      npm ci; \
-    else \
-      npm install && npm install -g npm-check-updates; \
-    fi
+RUN npm install
 
 # アプリケーションのソースをコピー
 COPY . .

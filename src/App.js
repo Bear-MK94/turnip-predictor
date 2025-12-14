@@ -29,6 +29,8 @@ export default function TurnipPredictor() {
 
   useEffect(() => {
     analyzePrices();
+    // analyzePricesは内部で使用する変数に依存しているため、依存配列に含める必要はない
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [buyPrice, mondayAM, prices, gameVersion]);
 
   const analyzePrices = () => {
