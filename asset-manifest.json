@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/turnip-predictor/static/css/main.f2429ba9.css",
+    "main.js": "/turnip-predictor/static/js/main.118958eb.js",
+    "index.html": "/turnip-predictor/index.html",
+    "main.f2429ba9.css.map": "/turnip-predictor/static/css/main.f2429ba9.css.map",
+    "main.118958eb.js.map": "/turnip-predictor/static/js/main.118958eb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f2429ba9.css",
+    "static/js/main.118958eb.js"
+  ]
+}
