@@ -1,18 +1,36 @@
-version: '3.8'
-
 services:
   turnip-app:
     build:
       context: .
       dockerfile: Dockerfile
+    image: turnip-predictor:1.0.0
+    container_name: turnip-predictor-app
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
-      - /app/node_modules
+      # ソースコードのみマウント（node_modulesは含めない）
+      - ./src:/app/src:ro
+      - ./public:/app/public:ro
+      # 設定ファイルをマウント
+      - ./tailwind.config.js:/app/tailwind.config.js:ro
+      # node_modulesは完全にコンテナ内のものを使用（匿名ボリューム）
+      - node_modules:/app/node_modules
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+      - PORT=3000
+      - WATCHPACK_POLLING=true
     stdin_open: true
     tty: true
     command: npm start
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+# 名前付きボリュームを定義
+volumes:
+  node_modules:
